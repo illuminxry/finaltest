@@ -5,12 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //routes instantiation
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var adminLoginRouter = require('./routes/admin-login');
 var adminDashboardRouter = require('./routes/admin-dashboard');
 var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
+var teacherLoginRouter = require('./routes/teacher-login');
+var teacherDashboardRouter = require('./routes/teacher-dashboard');
 var app = express();
 
 //port listener
@@ -29,9 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //routing the routes
 app.use('/', studentLoginRouter);
 app.use('/student', studentDashboardRouter);
-app.use('/users', usersRouter);
 app.use('/admin-login', adminLoginRouter);
 app.use('/admin/',adminDashboardRouter);
+app.use('/teacher-login/',teacherLoginRouter);
+app.use('/teacher-dashboard/',teacherDashboardRouter);
 
 
 

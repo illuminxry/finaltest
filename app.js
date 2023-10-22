@@ -30,14 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routing the routes
 app.use('/', studentLoginRouter);
-app.use('/student', studentDashboardRouter);
-app.use('/admin-login', adminLoginRouter);
-app.use('/admin/',adminDashboardRouter);
+app.use('/', studentDashboardRouter);
+app.use('/', adminLoginRouter);
+app.use('/',adminDashboardRouter);
 app.use('/', adminCreateSubjectRouter);
 app.use('/', adminIndexSubjectRouter);
-
-app.use('/teacher-login/',teacherLoginRouter);
-app.use('/teacher-dashboard/',teacherDashboardRouter);
+app.use('/',teacherLoginRouter);
+app.use('/',teacherDashboardRouter);
 
 
 

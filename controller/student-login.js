@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 const conn = {
     host: 'localhost',
-    database: 'tesstt',
+    database: 'finalcapstone',
     user: 'root',
     password: ''
 };
@@ -12,28 +12,31 @@ exports.getLoginPage = (req, res) => {
 };
 
 exports.postStudentLogin = (req, res) => {
-    const connection = mysql.createConnection(conn);
-
     const { studentID, studentpassword } = req.body;
 
-    // Use placeholders in the SQL query
-    const sql = 'SELECT studentID, studentpassword FROM studentlogin WHERE studentID = ? AND studentpassword = ?';
+    const sql = `SELECT s.firstname, s.middlename, s.lastname FROM students AS s INNER JOIN studentlogins AS sl ON s.studentID = sl.studentID WHERE sl.studentID = ? AND sl.studentpassword = ?`;
 
-    console.log(studentID);
-    console.log(studentpassword);
-    connection.query(sql, [studentID, studentpassword], (err, results) => {
+    const values = [studentID, studentpassword];
+    const connection = mysql.createConnection(conn);
+    connection.query(sql, values, (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
                 // Login successful
-                res.redirect('/student/dashboard');
+                // Render the student dashboard EJS template with user data
+                res.render('student-dashboard', {
+                    firstname: results[0].firstname,
+                    middlename: results[0].middlename,
+                    lastname: results[0].lastname
+                });
             } else {
                 // Login failed
                 res.send('Login failed');
             }
         }
-        connection.end();
     });
 };
+
+

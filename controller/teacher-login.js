@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 const conn = {
     host: 'localhost',
-    database: 'tesstt',
+    database: 'finalcapstone',
     user: 'root',
     password: ''
 };
@@ -14,21 +14,21 @@ exports.getLoginPage = (req, res) => {
 exports.postTeacherLogin = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const { userid, userpassword } = req.body;
+    const { userlogin, userpassword } = req.body;
 
     // Use placeholders in the SQL query
-    const sql = 'SELECT userid, userpassword FROM teacherlogin WHERE userid = ? AND userpassword = ?';
+    const sql = 'SELECT userlogin, userpassword FROM teacherlogin WHERE userlogin = ? AND userpassword = ?';
 
-    console.log(userid);
+    console.log(userlogin);
     console.log(userpassword);
-    connection.query(sql, [userid, userpassword], (err, results) => {
+    connection.query(sql, [userlogin, userpassword], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
                 // Login successful
-                res.redirect('/teacher-dashboard');
+                res.redirect('/teacher/dashboard');
             } else {
                 // Login failed
                 res.send('Login failed');

@@ -7,8 +7,11 @@ var logger = require('morgan');
 //routes instantiation
 var adminLoginRouter = require('./routes/admin-login');
 var adminDashboardRouter = require('./routes/admin-dashboard');
-var adminCreateSubjectRouter = require('./routes/admin-create-subject');
 var adminIndexSubjectRouter = require('./routes/admin-index-subject');
+var adminCreateSubjectRouter = require('./routes/admin-create-subject');
+var adminViewSubjectRouter = require('./routes/admin-view-subject');
+var adminEditSubjectRouter = require('./routes/admin-edit-subject');
+var adminDeleteSubjectRouter = require('./routes/admin-delete-subject');
 var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
@@ -33,8 +36,11 @@ app.use('/', studentLoginRouter);
 app.use('/', studentDashboardRouter);
 app.use('/', adminLoginRouter);
 app.use('/',adminDashboardRouter);
-app.use('/', adminCreateSubjectRouter);
 app.use('/', adminIndexSubjectRouter);
+app.use('/', adminCreateSubjectRouter);
+app.use('/', adminViewSubjectRouter);
+app.use('/', adminEditSubjectRouter);
+app.use('/', adminDeleteSubjectRouter);
 app.use('/',teacherLoginRouter);
 app.use('/',teacherDashboardRouter);
 

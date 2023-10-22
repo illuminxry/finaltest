@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 const conn = {
     host: 'localhost',
-    database: 'tesstt',
+    database: 'finalcapstone',
     user: 'root',
     password: ''
 };

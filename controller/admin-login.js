@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 const conn = {
     host: 'localhost',
-    database: 'tesstt',
+    database: 'finalcapstone',
     user: 'root',
     password: ''
 };
@@ -14,12 +14,12 @@ exports.getAdminLogin = (req, res) => {
 exports.postAdminLogin = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const { userid, userpw } = req.body;
+    const { userlogin, userpassword } = req.body;
 
     // Use placeholders in the SQL query
-    const sql = 'SELECT userid, userpw FROM adminlogin WHERE userid = ? AND userpw = ?';
+    const sql = 'SELECT userlogin, userpassword FROM adminlogin WHERE userlogin = ? AND userpassword = ?';
 
-    connection.query(sql, [userid, userpw], (err, results) => {
+    connection.query(sql, [userlogin, userpassword], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');

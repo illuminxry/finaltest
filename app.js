@@ -7,6 +7,8 @@ var logger = require('morgan');
 //routes instantiation
 var adminLoginRouter = require('./routes/admin-login');
 var adminDashboardRouter = require('./routes/admin-dashboard');
+var adminCreateSubjectRouter = require('./routes/admin-create-subject');
+var adminIndexSubjectRouter = require('./routes/admin-index-subject');
 var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
@@ -31,6 +33,9 @@ app.use('/', studentLoginRouter);
 app.use('/student', studentDashboardRouter);
 app.use('/admin-login', adminLoginRouter);
 app.use('/admin/',adminDashboardRouter);
+app.use('/', adminCreateSubjectRouter);
+app.use('/', adminIndexSubjectRouter);
+
 app.use('/teacher-login/',teacherLoginRouter);
 app.use('/teacher-dashboard/',teacherDashboardRouter);
 

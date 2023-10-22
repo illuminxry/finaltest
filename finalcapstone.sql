@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 10:29 AM
+-- Generation Time: Oct 22, 2023 at 05:21 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.1.12
 
@@ -175,19 +175,23 @@ INSERT INTO `students` (`studentID`, `firstname`, `middlename`, `lastname`, `suf
 --
 
 CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
   `subjectid` varchar(15) DEFAULT NULL,
   `subjectname` varchar(20) NOT NULL,
   `sectionname` varchar(50) DEFAULT NULL,
-  `teacherid` int(11) DEFAULT NULL
+  `teacherid` int(11) DEFAULT NULL,
+  `visibility` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`subjectid`, `subjectname`, `sectionname`, `teacherid`) VALUES
-('Math-001', 'Mathematics', 'testsection1', 1),
-('Math-002', 'Mathematics 2', 'testsection2', 2);
+INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `sectionname`, `teacherid`, `visibility`) VALUES
+(1, 'test-for-deleti', 'delete this', 'testsection4', 2, 'Invisible'),
+(2, 'Math-001', 'Mathematics', 'testsection1', 1, 'Visible'),
+(3, 'Math-002', 'Mathematics 2', 'testsection2', 2, 'Visible'),
+(4, 'test', 'test', 'testsection3', 2, 'Invisible');
 
 -- --------------------------------------------------------
 
@@ -286,9 +290,10 @@ ALTER TABLE `students`
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
-  ADD PRIMARY KEY (`subjectname`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `sectionname` (`sectionname`),
-  ADD KEY `teacherid` (`teacherid`);
+  ADD KEY `teacherid` (`teacherid`),
+  ADD KEY `subjectname` (`subjectname`);
 
 --
 -- Indexes for table `teacherdetails`
@@ -328,6 +333,12 @@ ALTER TABLE `quarters`
 -- AUTO_INCREMENT for table `studentlogins`
 --
 ALTER TABLE `studentlogins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --

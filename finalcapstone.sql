@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2023 at 08:56 AM
+-- Generation Time: Oct 22, 2023 at 10:29 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.1.12
 
@@ -36,6 +36,13 @@ CREATE TABLE `admindetails` (
   `role` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admindetails`
+--
+
+INSERT INTO `admindetails` (`id`, `firstname`, `middlename`, `lastname`, `department`, `role`) VALUES
+(1, 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'IT', 'IT');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,13 @@ CREATE TABLE `adminlogin` (
   `userlogin` varchar(25) DEFAULT NULL,
   `userpassword` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adminlogin`
+--
+
+INSERT INTO `adminlogin` (`id`, `userlogin`, `userpassword`) VALUES
+(1, 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -96,6 +110,16 @@ CREATE TABLE `sections` (
   `sectionname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `sections`
+--
+
+INSERT INTO `sections` (`sectionname`) VALUES
+('testsection1'),
+('testsection2'),
+('testsection3'),
+('testsection4');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +131,16 @@ CREATE TABLE `studentlogins` (
   `studentID` varchar(25) DEFAULT NULL,
   `studentpassword` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `studentlogins`
+--
+
+INSERT INTO `studentlogins` (`id`, `studentID`, `studentpassword`) VALUES
+(1, '2020-20001', 'janraymarc'),
+(2, '2020-20002', 'christian'),
+(3, '2020-20003', 'justroilon'),
+(4, '2020-20004', 'marcramos');
 
 -- --------------------------------------------------------
 
@@ -124,6 +158,16 @@ CREATE TABLE `students` (
   `sectionname` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `yearlevel`, `sectionname`) VALUES
+('2020-20001', 'Jan Raymarc', 'D', 'Mercado', 'JR.', 'test1', 'testsection1'),
+('2020-20002', 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'Sr.', 'test2', 'testsection2'),
+('2020-20003', 'Justroilon', 'C', 'Rico', 'VIII', 'test3', 'testsection3'),
+('2020-20004', 'Marc', 'Casupang', 'Ramos', 'IV', 'test4', 'testsection4');
+
 -- --------------------------------------------------------
 
 --
@@ -136,6 +180,14 @@ CREATE TABLE `subjects` (
   `sectionname` varchar(50) DEFAULT NULL,
   `teacherid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`subjectid`, `subjectname`, `sectionname`, `teacherid`) VALUES
+('Math-001', 'Mathematics', 'testsection1', 1),
+('Math-002', 'Mathematics 2', 'testsection2', 2);
 
 -- --------------------------------------------------------
 
@@ -151,6 +203,14 @@ CREATE TABLE `teacherdetails` (
   `department` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `teacherdetails`
+--
+
+INSERT INTO `teacherdetails` (`id`, `firstname`, `middlename`, `lastname`, `department`) VALUES
+(1, 'Christian Emmanuel', 'Avecilla', 'Pastrana', 'Information Technology'),
+(2, 'Justroilon', 'C', 'Rico', 'MAPEH');
+
 -- --------------------------------------------------------
 
 --
@@ -162,6 +222,14 @@ CREATE TABLE `teacherlogin` (
   `userlogin` varchar(25) DEFAULT NULL,
   `userpassword` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `teacherlogin`
+--
+
+INSERT INTO `teacherlogin` (`id`, `userlogin`, `userpassword`) VALUES
+(1, 'mceapastrana', 'mceapastrana'),
+(2, 'mjcrico', 'mjcrico');
 
 --
 -- Indexes for dumped tables
@@ -242,7 +310,7 @@ ALTER TABLE `teacherlogin`
 -- AUTO_INCREMENT for table `adminlogin`
 --
 ALTER TABLE `adminlogin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lessons`
@@ -260,13 +328,13 @@ ALTER TABLE `quarters`
 -- AUTO_INCREMENT for table `studentlogins`
 --
 ALTER TABLE `studentlogins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `teacherlogin`
 --
 ALTER TABLE `teacherlogin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

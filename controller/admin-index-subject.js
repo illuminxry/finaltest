@@ -8,13 +8,13 @@ const conn = {
 };
 
 exports.getSubjectIndexPage = (req, res) => {
-    const subjectsql = 'SELECT * FROM subjects'; // Changed from 'section' to 'subject'
-    const teacherSql = 'SELECT id, firstname, middlename, lastname FROM teacherdetails';
+    const sql = `
+        SELECT s.subjectid, s.subjectname, s.sectionname, s.teacherid, td.firstname, td.middlename, td.lastname
+        FROM subjects as s
+        INNER JOIN teacherdetails as td ON s.teacherid = td.id
+    `;
 
     const connection = mysql.createConnection(conn);
-
-    // Create an object to store the results
-    const data = {};
 
     connection.connect((err) => {
         if (err) {
@@ -23,38 +23,18 @@ exports.getSubjectIndexPage = (req, res) => {
             return;
         }
 
-        // Execute both SQL queries in parallel using Promise.all
-        Promise.all([
-            new Promise((resolve, reject) => {
-                connection.query(subjectsql, (err, subjectResults) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        data.subjects = subjectResults;
-                        resolve();
-                    }
-                });
-            }),
-            new Promise((resolve, reject) => {
-                connection.query(teacherSql, (err, teacherResults) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        data.teachers = teacherResults;
-                        resolve();
-                    }
-                });
-            }),
-        ])
-            .then(() => {
-                connection.end(); // Close the database connection
-
-                // Pass the data to your EJS template and render it
-                res.render('admin-index-subject', { data });
-            })
-            .catch((err) => {
+        connection.query(sql, (err, results) => {
+            if (err) {
                 console.error('Error:', err);
                 res.status(500).send('Internal Server Error');
-            });
+                return;
+            }
+
+            connection.end(); // Close the database connection
+
+            // Pass the data to your EJS template and render it
+            res.render('admin-index-subject', { data: results });
+        });
     });
-}
+};
+

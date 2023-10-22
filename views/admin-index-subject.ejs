@@ -12,21 +12,20 @@
         <th>Assigned teacher</th>
         <th colspan="3">Action</th>
     </tr>
-    <% data.subjects.forEach((subject) => { %>
+    <% data.forEach((row) => { %>
         <tr>
-            <td><%= subject.subjectid %></td>
-            <td><%= subject.subjectname %></td>
-            <td><%= subject.sectionname %></td>
-            <td><%= subject.teacherid %></td>
-            <% data.teachers.forEach((teacher) => { %>
-                <% if (teacher.id === subject.teacherid) { %>
-                    <td><%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %></td>
-                <% } %>
-            <% }); %>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%= row.subjectid %></td>
+            <td><%= row.subjectname %></td>
+            <td><%= row.sectionname %></td>
+            <td><%= row.teacherid %></td>
+            <td><%= row.firstname + ' ' + row.middlename + ' ' + row.lastname %></td>
+            <td><a href="/admin/view-subject/<%= row.subjectid %>">View Subject</a></td>
+            <td><a href="/admin/edit-subject/<%= row.subjectid %>">Edit Subject</a></td>
+            <td>
+                <form action="/admin/delete-subject/<%= row.subjectid %>" method="post">
+                    <button type="submit">Delete Subject</button>
+                </form>
+            </td>
         </tr>
     <% }); %>
-    
 </table>

@@ -60,15 +60,16 @@ exports.getSubjectCreatePage = (req, res) => {
 };
 
 exports.postSubjectCreatePage = (req, res) => {
-    const { subjectid, subjectname, sectionname, teacherid } = req.body;
+    const { subjectid, subjectname, sectionname, teacherid , visibility} = req.body;
 
     console.log(subjectid);
     console.log(subjectname);
     console.log(sectionname);
     console.log(teacherid);
+    console.log(visibility);
 
-    const sql = `INSERT INTO subjects (subjectid, subjectname, sectionname, teacherid) VALUES (?, ?, ?, ?)`;
-    const values = [subjectid, subjectname, sectionname, teacherid];
+    const sql = `INSERT INTO subjects (subjectid, subjectname, sectionname, teacherid, visibility) VALUES (?, ?, ?, ?, ?);`;
+    const values = [subjectid, subjectname, sectionname, teacherid, visibility];
 
     const connection = mysql.createConnection(conn);
 
@@ -93,7 +94,7 @@ exports.postSubjectCreatePage = (req, res) => {
             console.log('subjectName: ' + subjectname);
             console.log('Section: ' + sectionname); // Corrected variable name
             console.log('Teacher: ' + teacherid); // Corrected variable name
-
+            console.log('Visibility: ' + visibility);
             // Redirect to the root URL ('/')
             res.redirect('/admin/create-subject');
         });

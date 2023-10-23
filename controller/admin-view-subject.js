@@ -13,7 +13,17 @@ exports.getSubjectView = (req, res) => {
     const { id } = req.params;
 
     // Query the database to fetch data for the subject with the specified subjectID (id)
-    const sql = 'SELECT s.subjectid, s.subjectname, s.sectionname, td.firstname, td.middlename, td.lastname as teacher FROM subjects as s INNER JOIN teacherdetails as td ON s.teacherid = td.id WHERE s.subjectid = ?';
+    const sql = `
+        SELECT s.subjectid, 
+        s.subjectname, 
+        s.sectionname, 
+        td.firstname, 
+        td.middlename, 
+        td.lastname, 
+        CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) AS teacher
+        FROM subjects as s 
+        INNER JOIN teacherdetails as td ON s.teacherid = td.id 
+        WHERE s.subjectid = ?`;
 
     connection.query(sql, [id], (error, results) => {
         if (error) {

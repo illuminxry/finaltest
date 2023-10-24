@@ -24,3 +24,5 @@ branch 17 - create for section not working
 branch 18 - create section working
 branch 19 - index section created and working
 branch 20 - delete function created and updated readme
+branch 21 - view section function created
+branch 22 - application routing updated

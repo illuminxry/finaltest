@@ -72,25 +72,36 @@ exports.getEditSubjectPage = (req, res) => {
     });
 };
 
-// exports.postEditSubjectPage = (req, res) => {
+exports.postEditSubjectPage = (req, res) => {
+    const connection = mysql.createConnection(conn);
 
-//     const connection = mysql.createConnection(conn);
-//     // Extract the form data submitted by the user
-//     const { subjectid, subjectname, sectionname, teacherid, visibility } = req.body;
+    // Extract the form data submitted by the user
+    const { subjectid, subjectname, sectionname, teacherid, visibility } = req.body;
+    const { id } = req.params; // Assuming your route parameter is named 'id'
 
-//     const sql = `
-//     UPDATE subjects
-// SET
-//     subjectname = ?,
-//     sectionname = ?,
-//     teacherid = ?,
-//     visibility = ?
-//     WHERE subjectid = ?;
-// `;
+    const sql = `
+        UPDATE subjects
+        SET
+            subjectid = ?,
+            subjectname = ?,
+            sectionname = ?,
+            teacherid = ?,
+            visibility = ?
+        WHERE id = ?;`;
 
-// const values = [subjectid, subjectname, sectionname, teacherid, visibility];
+    const values = [subjectid, subjectname, sectionname, teacherid, visibility, id];
 
+    // Execute the SQL update statement
+    connection.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error updating subject:', err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            // Successfully updated the subject
+            res.redirect('/admin/index-subject');
+        }
 
-
-//     res.redirect('admin/index-subject');
-// };
+        // Close the database connection
+        connection.end();
+    });
+};

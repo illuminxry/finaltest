@@ -12,11 +12,17 @@ exports.getLoginPage = (req, res) => {
 };
 
 exports.postStudentLogin = (req, res) => {
-    const { studentID, studentpassword } = req.body;
+    const { studentID, studentUserName, studentPassword } = req.body;
 
-    const sql = `SELECT s.firstname, s.middlename, s.lastname FROM students AS s INNER JOIN studentlogins AS sl ON s.studentID = sl.studentID WHERE sl.studentID = ? AND sl.studentpassword = ?`;
+    const sql = `
+        SELECT s.studentID, s.firstname, s.middlename, s.lastname, s.sectionname
+        FROM studentlogins AS sl
+        INNER JOIN students AS s ON sl.studentID = s.studentID
+        WHERE sl.studentID = ? AND sl.studentUserName = ? AND sl.studentPassword = ?
+    `;
 
-    const values = [studentID, studentpassword];
+    const values = [studentID, studentUserName, studentPassword];
+
     const connection = mysql.createConnection(conn);
     connection.query(sql, values, (err, results) => {
         if (err) {
@@ -38,5 +44,6 @@ exports.postStudentLogin = (req, res) => {
         }
     });
 };
+
 
 

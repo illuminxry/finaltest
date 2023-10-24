@@ -9,9 +9,14 @@ const conn = {
 
 exports.getSubjectIndexPage = (req, res) => {
     const sql = `
-        SELECT s.subjectid, s.subjectname, s.sectionname, s.teacherid, td.firstname, td.middlename, td.lastname
-        FROM subjects as s
-        INNER JOIN teacherdetails as td ON s.teacherid = td.id where visibility = 'Visible'
+    SELECT
+    s.subjectid,
+    s.subjectname,
+    td.teacherid,
+    CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) as teacher_fullname
+FROM subjects as s
+INNER JOIN teacherdetails as td on s.teacherid = td.teacherid
+WHERE s.visibility = "Visible";
     `;
 
     const connection = mysql.createConnection(conn);
@@ -33,6 +38,7 @@ exports.getSubjectIndexPage = (req, res) => {
             connection.end(); // Close the database connection
 
             // Pass the data to your EJS template and render it
+            console.log(results);
             res.render('admin-index-subject', { data: results });
         });
     });

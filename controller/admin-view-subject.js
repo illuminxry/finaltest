@@ -20,9 +20,10 @@ exports.getSubjectView = (req, res) => {
         td.firstname, 
         td.middlename, 
         td.lastname, 
+        td.teacherid,
         CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) AS teacher
         FROM subjects as s 
-        INNER JOIN teacherdetails as td ON s.teacherid = td.id 
+        INNER JOIN teacherdetails as td ON s.teacherid = td.teacherid 
         WHERE s.subjectid = ?`;
 
     connection.query(sql, [id], (error, results) => {

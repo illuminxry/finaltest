@@ -14,12 +14,12 @@ exports.getAdminLogin = (req, res) => {
 exports.postAdminLogin = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const { userlogin, userpassword } = req.body;
+    const {admin_id, username, userpassword } = req.body;
 
     // Use placeholders in the SQL query
-    const sql = 'SELECT userlogin, userpassword FROM adminlogin WHERE userlogin = ? AND userpassword = ?';
+    const sql = 'SELECT admin_id, username, userpassword FROM adminlogins WHERE admin_id = ? AND username = ? AND userpassword = ?';
 
-    connection.query(sql, [userlogin, userpassword], (err, results) => {
+    connection.query(sql, [admin_id, username, userpassword], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');

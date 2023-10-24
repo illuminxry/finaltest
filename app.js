@@ -12,6 +12,7 @@ var adminCreateSubjectRouter = require('./routes/admin-create-subject');
 var adminViewSubjectRouter = require('./routes/admin-view-subject');
 var adminEditSubjectRouter = require('./routes/admin-edit-subject');
 var adminDeleteSubjectRouter = require('./routes/admin-delete-subject');
+var adminCreateSectionRouter = require('./routes/admin-create-section');
 var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
@@ -35,14 +36,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', studentLoginRouter);
 app.use('/', studentDashboardRouter);
 app.use('/', adminLoginRouter);
-app.use('/',adminDashboardRouter);
+app.use('/', adminDashboardRouter);
 app.use('/', adminIndexSubjectRouter);
 app.use('/', adminCreateSubjectRouter);
 app.use('/', adminViewSubjectRouter);
 app.use('/', adminEditSubjectRouter);
 app.use('/', adminDeleteSubjectRouter);
-app.use('/',teacherLoginRouter);
-app.use('/',teacherDashboardRouter);
+app.use('/', adminCreateSectionRouter);
+app.use('/', teacherLoginRouter);
+app.use('/', teacherDashboardRouter);
 
 
 

@@ -12,7 +12,7 @@ exports.getCreateSection = (req, res) => {
 }
 exports.postCreateSection = (req, res) => {
       const { sectionname } = req.body;
-  
+      const connection = mysql.createConnection(conn);
       // Define the SQL INSERT statement to insert a new section
       const sql = `INSERT INTO sections (sectionname) VALUES (?)`;
   
@@ -31,7 +31,7 @@ exports.postCreateSection = (req, res) => {
               // Successfully inserted the new section
               // You can redirect to a success page or perform other actions
               
-              res.redirect('/admin-create-section');
+              res.redirect('/admin/create-section');
           }
   
           // Close the database connection

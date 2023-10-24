@@ -13,6 +13,8 @@ var adminViewSubjectRouter = require('./routes/admin-view-subject');
 var adminEditSubjectRouter = require('./routes/admin-edit-subject');
 var adminDeleteSubjectRouter = require('./routes/admin-delete-subject');
 var adminCreateSectionRouter = require('./routes/admin-create-section');
+var adminIndexSectionRouter = require('./routes/admin-index-section');
+var adminDeleteSectionRouter = require('./routes/admin-delete-section');
 var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
@@ -43,16 +45,16 @@ app.use('/', adminViewSubjectRouter);
 app.use('/', adminEditSubjectRouter);
 app.use('/', adminDeleteSubjectRouter);
 app.use('/', adminCreateSectionRouter);
+app.use('/', adminIndexSectionRouter);
+app.use('/', adminDeleteSectionRouter);
 app.use('/', teacherLoginRouter);
 app.use('/', teacherDashboardRouter);
-
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

@@ -10,9 +10,9 @@ const conn = {
 exports.getEditSubjectPage = (req, res) => {
     const subjectid = req.params.id; // Get subjectid from request parameters
 
-    const subjectSql = 'SELECT subjectid, subjectname FROM subjects WHERE subjectid = ?';
+    const subjectSql = 'SELECT id, subjectid, subjectname FROM subjects WHERE subjectid = ?';
     const sectionSql = 'SELECT sectionname FROM sections';
-    const teacherSql = 'SELECT id, firstname, middlename, lastname FROM teacherdetails';
+    const teacherSql = 'SELECT teacherid, firstname, middlename, lastname FROM teacherdetails';
 
     const connection = mysql.createConnection(conn);
 
@@ -72,7 +72,25 @@ exports.getEditSubjectPage = (req, res) => {
     });
 };
 
-exports.postEditSubjectPage = (req, res) => {
-    
-    res.redirect('admin/index-subject');
-};
+// exports.postEditSubjectPage = (req, res) => {
+
+//     const connection = mysql.createConnection(conn);
+//     // Extract the form data submitted by the user
+//     const { subjectid, subjectname, sectionname, teacherid, visibility } = req.body;
+
+//     const sql = `
+//     UPDATE subjects
+// SET
+//     subjectname = ?,
+//     sectionname = ?,
+//     teacherid = ?,
+//     visibility = ?
+//     WHERE subjectid = ?;
+// `;
+
+// const values = [subjectid, subjectname, sectionname, teacherid, visibility];
+
+
+
+//     res.redirect('admin/index-subject');
+// };

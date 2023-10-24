@@ -16,7 +16,7 @@
     <label for="">Teacher</label><br><br>
     <select name="teacherid" id="teacherid">
         <% data.teachers.forEach((teacher) => { %>
-            <option value="<%= teacher.id %>">
+            <option value="<%= teacher.teacherid %>">
                 <%= teacher.firstname + ' ' + teacher.middlename + ' ' + teacher.lastname %>
             </option>
         <% }); %>

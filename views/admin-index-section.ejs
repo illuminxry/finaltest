@@ -8,8 +8,8 @@
     <% for (const section of sections) { %>
       <tr>
         <td><%= section.sectionname %></td>
-        <td><a href="/view/<%= section.id %>">View</a></td>
-        <td><a href="/edit/<%= section.id %>">Edit</a></td>
+        <td><a href="/admin/view-section/<%= section.id %>">View</a></td>
+        <td><a href="/admin/edit/<%= section.id %>">Edit</a></td>
         <td>
             <form action="/admin/delete-section/<%= section.id %>" method="post">
                 <button type="submit">Delete Subject</button>

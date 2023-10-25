@@ -14,24 +14,30 @@ exports.getLoginPage = (req, res) => {
 exports.postTeacherLogin = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const { userlogin, userpassword } = req.body;
+    const { teacherid, userlogin, userpassword } = req.body;
 
     // Use placeholders in the SQL query
-    const sql = 'SELECT userlogin, userpassword FROM teacherlogin WHERE userlogin = ? AND userpassword = ?';
+    const sql = 'SELECT teacherid, userlogin, userpassword FROM teacherlogins WHERE teacherid = ? AND userlogin = ?';
 
-    console.log(userlogin);
-    console.log(userpassword);
-    connection.query(sql, [userlogin, userpassword], (err, results) => {
+    // Execute the SQL query with placeholders
+    connection.query(sql, [teacherid, userlogin], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
-                // Login successful
-                res.redirect('/teacher/dashboard');
+                const storedPassword = results[0].userpassword;
+                // Compare the stored password with the provided password (you should use a secure password hashing library)
+                if (userpassword === storedPassword) {
+                    // Login successful
+                    res.redirect('/teacher/dashboard');
+                } else {
+                    // Incorrect password
+                    res.send('Incorrect password');
+                }
             } else {
-                // Login failed
-                res.send('Login failed');
+                // No matching user found
+                res.send('User not found');
             }
         }
         connection.end();

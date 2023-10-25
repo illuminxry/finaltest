@@ -29,3 +29,5 @@ branch 21 - view section function created
 branch 22 - application routing updated
 branch 23 - added edit function, 50% done
 branch 24 - edit function 100% done, index section and create section updated routing, updated db
+branch 25 - edited view-section table
+branch 26 - updated controller for teacher login, and added inputfield for teacherlogin

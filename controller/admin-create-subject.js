@@ -96,7 +96,7 @@ exports.postSubjectCreatePage = (req, res) => {
             console.log('Teacher: ' + teacherid); // Corrected variable name
             console.log('Visibility: ' + visibility);
             // Redirect to the root URL ('/')
-            res.redirect('/admin/create-subject');
+            res.redirect('/admin/index-subject');
         });
     });
 }

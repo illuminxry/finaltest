@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 04:27 PM
+-- Generation Time: Oct 25, 2023 at 02:50 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -113,16 +113,18 @@ INSERT INTO `quarters` (`id`, `quarterperiod`) VALUES
 
 CREATE TABLE `sections` (
   `id` int(11) NOT NULL,
-  `sectionname` varchar(50) DEFAULT NULL
+  `sectionname` varchar(50) DEFAULT NULL,
+  `visibility` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sections`
 --
 
-INSERT INTO `sections` (`id`, `sectionname`) VALUES
-(1, '8 - St. John Bosco'),
-(2, '9 - St. Therese of Avila');
+INSERT INTO `sections` (`id`, `sectionname`, `visibility`) VALUES
+(1, '8 - St. John', 'Visible'),
+(2, '9 - St. Therese of Avila', 'Visible'),
+(3, '7 - St. Therese', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -165,7 +167,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`) VALUES
-(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', '8 - St. John Bosco');
+(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', NULL);
 
 -- --------------------------------------------------------
 
@@ -187,10 +189,12 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionname`, `visibility`) VALUES
-(1, 'Math-01', 'Mathematics Today', '2013-023', '8 - St. John Bosco', 'Visible'),
-(5, 'Filipino-1', 'Ang Talinhaga ', '2013-023', '9 - St. Therese of Avila', 'Visible'),
-(6, 'SexED-101', 'Sex Education for Teens', '2013-023', '8 - St. John Bosco', 'Visible'),
-(7, 'Math-032', 'Algebra2', '2020-069', '9 - St. Therese of Avila', 'Visible');
+(1, 'Math-01', 'Mathematics Today', '2013-023', '8 - St. John', 'Visible'),
+(5, 'Filipino-1', 'Ang Talinhaga ', '2020-069', '9 - St. Therese of Avila', 'Visible'),
+(6, 'SexED-101', 'Sex Education for Teens', '2013-023', '8 - St. John', 'Visible'),
+(7, 'Math-032', 'Algebra2', '2020-069', '9 - St. Therese of Avila', 'Visible'),
+(8, 'GenMath-11', 'General Math', '2020-069', '8 - St. John', 'Visible'),
+(9, 'PE-01', 'Physical Education 1', '2020-069', '7 - St. Therese', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -228,6 +232,14 @@ CREATE TABLE `teacherlogins` (
   `userlogin` varchar(25) DEFAULT NULL,
   `userpassword` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `teacherlogins`
+--
+
+INSERT INTO `teacherlogins` (`id`, `teacherid`, `userlogin`, `userpassword`) VALUES
+(1, '2020-069', 'teacherbernabe', 'teacherbernabe'),
+(2, '2013-023', 'teacheralex', 'teacheralex');
 
 --
 -- Indexes for dumped tables
@@ -294,7 +306,8 @@ ALTER TABLE `students`
 --
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `teacherid` (`teacherid`,`sectionname`);
+  ADD KEY `teacherid` (`teacherid`,`sectionname`),
+  ADD KEY `subjects_ibfk_2` (`sectionname`);
 
 --
 -- Indexes for table `teacherdetails`
@@ -344,7 +357,7 @@ ALTER TABLE `quarters`
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `studentlogins`
@@ -362,7 +375,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `teacherdetails`
@@ -374,7 +387,7 @@ ALTER TABLE `teacherdetails`
 -- AUTO_INCREMENT for table `teacherlogins`
 --
 ALTER TABLE `teacherlogins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

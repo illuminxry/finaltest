@@ -28,4 +28,4 @@ branch 20 - delete function created and updated readme
 branch 21 - view section function created
 branch 22 - application routing updated
 branch 23 - added edit function, 50% done
-branch 24 - edit function 100% done, index section and create section updated routing
+branch 24 - edit function 100% done, index section and create section updated routing, updated db

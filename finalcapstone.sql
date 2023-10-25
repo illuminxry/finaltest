@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 02:50 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Oct 25, 2023 at 06:14 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `admindetails` (
   `department` varchar(50) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `visibility` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admindetails`
@@ -56,7 +56,7 @@ CREATE TABLE `adminlogins` (
   `admin_id` varchar(25) DEFAULT NULL,
   `username` varchar(25) NOT NULL,
   `userpassword` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adminlogins`
@@ -74,7 +74,7 @@ INSERT INTO `adminlogins` (`id`, `admin_id`, `username`, `userpassword`) VALUES
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `department` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `departments`
@@ -87,13 +87,48 @@ INSERT INTO `departments` (`id`, `department`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lessons`
+--
+
+CREATE TABLE `lessons` (
+  `id` int(11) NOT NULL,
+  `lessonID` int(11) DEFAULT NULL,
+  `subjectname` varchar(25) DEFAULT NULL,
+  `teacherid` varchar(25) DEFAULT NULL,
+  `quarterperiod` varchar(20) DEFAULT NULL,
+  `sectionname` varchar(50) DEFAULT NULL,
+  `section1` longtext DEFAULT NULL,
+  `section2` longtext DEFAULT NULL,
+  `section3` longtext DEFAULT NULL,
+  `section4` longtext DEFAULT NULL,
+  `section5` longtext DEFAULT NULL,
+  `section6` longtext DEFAULT NULL,
+  `section7` longtext DEFAULT NULL,
+  `section8` longtext DEFAULT NULL,
+  `section9` longtext DEFAULT NULL,
+  `section10` longtext DEFAULT NULL,
+  `dateCreated` date DEFAULT NULL,
+  `dateUpdated` date DEFAULT NULL,
+  `visibility` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `lessons`
+--
+
+INSERT INTO `lessons` (`id`, `lessonID`, `subjectname`, `teacherid`, `quarterperiod`, `sectionname`, `section1`, `section2`, `section3`, `section4`, `section5`, `section6`, `section7`, `section8`, `section9`, `section10`, `dateCreated`, `dateUpdated`, `visibility`) VALUES
+(1, 1, 'General Math', '2020-069', 'First Quarter', '8 - St. John Bosco', 'test1', 'testtest12', 'testtest13', 'test1', 'test13', 'test12', 'test1', 'test12', 'test13', 'test1', '2023-10-25', '2023-10-28', 'Visible');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `quarters`
 --
 
 CREATE TABLE `quarters` (
   `id` int(11) NOT NULL,
   `quarterperiod` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `quarters`
@@ -115,14 +150,14 @@ CREATE TABLE `sections` (
   `id` int(11) NOT NULL,
   `sectionname` varchar(50) DEFAULT NULL,
   `visibility` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sections`
 --
 
 INSERT INTO `sections` (`id`, `sectionname`, `visibility`) VALUES
-(1, '8 - St. John', 'Visible'),
+(1, '8 - St. John Bosco', 'Visible'),
 (2, '9 - St. Therese of Avila', 'Visible'),
 (3, '7 - St. Therese', 'Visible');
 
@@ -137,7 +172,7 @@ CREATE TABLE `studentlogins` (
   `studentID` varchar(25) DEFAULT NULL,
   `studentUserName` varchar(25) DEFAULT NULL,
   `studentPassword` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `studentlogins`
@@ -160,14 +195,14 @@ CREATE TABLE `students` (
   `lastname` varchar(50) DEFAULT NULL,
   `suffix` varchar(15) DEFAULT NULL,
   `sectionname` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
 INSERT INTO `students` (`id`, `studentID`, `firstname`, `middlename`, `lastname`, `suffix`, `sectionname`) VALUES
-(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', NULL);
+(1, '2020-0001', 'Jan Raymarc', 'D.', 'Mercado', 'none', '8 - St. John Bosco');
 
 -- --------------------------------------------------------
 
@@ -182,19 +217,18 @@ CREATE TABLE `subjects` (
   `teacherid` varchar(25) DEFAULT NULL,
   `sectionname` varchar(50) DEFAULT NULL,
   `visibility` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `subjectid`, `subjectname`, `teacherid`, `sectionname`, `visibility`) VALUES
-(1, 'Math-01', 'Mathematics Today', '2013-023', '8 - St. John', 'Visible'),
+(1, 'Math-01', 'Mathematics Today', '2013-023', '8 - St. John Bosco', 'Visible'),
 (5, 'Filipino-1', 'Ang Talinhaga ', '2020-069', '9 - St. Therese of Avila', 'Visible'),
-(6, 'SexED-101', 'Sex Education for Teens', '2013-023', '8 - St. John', 'Visible'),
+(6, 'SexED-101', 'Sex Education for Teens', '2013-023', '8 - St. John Bosco', 'Visible'),
 (7, 'Math-032', 'Algebra2', '2020-069', '9 - St. Therese of Avila', 'Visible'),
-(8, 'GenMath-11', 'General Math', '2020-069', '8 - St. John', 'Visible'),
-(9, 'PE-01', 'Physical Education 1', '2020-069', '7 - St. Therese', 'Visible');
+(8, 'GenMath-11', 'General Math', '2020-069', '8 - St. John Bosco', 'Visible');
 
 -- --------------------------------------------------------
 
@@ -210,7 +244,7 @@ CREATE TABLE `teacherdetails` (
   `lastname` varchar(50) DEFAULT NULL,
   `department` varchar(50) DEFAULT NULL,
   `visibility` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacherdetails`
@@ -231,15 +265,14 @@ CREATE TABLE `teacherlogins` (
   `teacherid` varchar(25) NOT NULL,
   `userlogin` varchar(25) DEFAULT NULL,
   `userpassword` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacherlogins`
 --
 
 INSERT INTO `teacherlogins` (`id`, `teacherid`, `userlogin`, `userpassword`) VALUES
-(1, '2020-069', 'teacherbernabe', 'teacherbernabe'),
-(2, '2013-023', 'teacheralex', 'teacheralex');
+(1, '2020-069', 'havb-069', 'havb-069');
 
 --
 -- Indexes for dumped tables
@@ -268,6 +301,16 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `department` (`department`),
   ADD KEY `department_2` (`department`);
+
+--
+-- Indexes for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quarterperiod` (`quarterperiod`),
+  ADD KEY `subjectname` (`subjectname`) USING BTREE,
+  ADD KEY `sectionname` (`sectionname`),
+  ADD KEY `teacherid` (`teacherid`);
 
 --
 -- Indexes for table `quarters`
@@ -306,6 +349,7 @@ ALTER TABLE `students`
 --
 ALTER TABLE `subjects`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subjectname` (`subjectname`),
   ADD KEY `teacherid` (`teacherid`,`sectionname`),
   ADD KEY `subjects_ibfk_2` (`sectionname`);
 
@@ -315,8 +359,8 @@ ALTER TABLE `subjects`
 ALTER TABLE `teacherdetails`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `teacherid` (`teacherid`),
-  ADD KEY `teacherid_2` (`teacherid`),
-  ADD KEY `department` (`department`);
+  ADD KEY `department` (`department`),
+  ADD KEY `teacherid_2` (`teacherid`);
 
 --
 -- Indexes for table `teacherlogins`
@@ -348,6 +392,12 @@ ALTER TABLE `departments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `lessons`
+--
+ALTER TABLE `lessons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `quarters`
 --
 ALTER TABLE `quarters`
@@ -375,7 +425,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `teacherdetails`
@@ -387,7 +437,7 @@ ALTER TABLE `teacherdetails`
 -- AUTO_INCREMENT for table `teacherlogins`
 --
 ALTER TABLE `teacherlogins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -404,6 +454,15 @@ ALTER TABLE `admindetails`
 --
 ALTER TABLE `adminlogins`
   ADD CONSTRAINT `adminlogins_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admindetails` (`admin_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD CONSTRAINT `lessons_ibfk_1` FOREIGN KEY (`quarterperiod`) REFERENCES `quarters` (`quarterperiod`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `lessons_ibfk_2` FOREIGN KEY (`subjectname`) REFERENCES `subjects` (`subjectname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `lessons_ibfk_4` FOREIGN KEY (`sectionname`) REFERENCES `sections` (`sectionname`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `lessons_ibfk_5` FOREIGN KEY (`teacherid`) REFERENCES `subjects` (`teacherid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `studentlogins`

@@ -1,4 +1,5 @@
 <h1>All Sections</h1>
+<button><a href="/admin/create-section">Create Section</a></button>
 
 <table border="1">
     <tr>
@@ -9,7 +10,7 @@
       <tr>
         <td><%= section.sectionname %></td>
         <td><a href="/admin/view-section/<%= section.id %>">View</a></td>
-        <td><a href="/admin/edit/<%= section.id %>">Edit</a></td>
+        <td><a href="/admin/edit-section/<%= section.id %>">Edit</a></td>
         <td>
             <form action="/admin/delete-section/<%= section.id %>" method="post">
                 <button type="submit">Delete Subject</button>

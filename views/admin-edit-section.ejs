@@ -1,0 +1,12 @@
+<h1>edit section name</h1>
+<form action="/admin-edit-section" method="post">
+      <label for="sectionId">Section ID</label><br>
+      <input type="text" id="sectionId" name="sectionId" value="<%= sectionData.id %>" disabled><br><br>
+
+      
+      <label for="sectionName">Section Name</label><br>
+      <input type="text" id="sectionName" name="sectionName" value="<%= sectionData.sectionname %>">
+      <br><br>
+      
+      <input type="submit" value="Update Section">
+    </form>

@@ -10,7 +10,7 @@ const conn = {
 exports.getViewSection = (req, res) => {
   const connection = mysql.createConnection(conn);
   const { id } = req.params;
-  const sql = `SELECT s.sectionname, sub.subjectname, CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) AS teacher_name
+  const sql = `SELECT sub.subjectid, s.sectionname, sub.subjectname, CONCAT(td.firstname, ' ', td.middlename, ' ', td.lastname) AS teacher_name
   FROM sections AS s
   INNER JOIN subjects AS sub ON sub.sectionname = s.sectionname
   INNER JOIN teacherdetails AS td ON td.teacherid = sub.teacherid
@@ -24,6 +24,7 @@ exports.getViewSection = (req, res) => {
       if (results.length > 0) {
         const sectionData = results[0];
         const subjects = results.map(row => ({
+          subjectid: row.subjectid,
           subjectname: row.subjectname,
           teacher_name: row.teacher_name
         }));

@@ -31,3 +31,5 @@ branch 23 - added edit function, 50% done
 branch 24 - edit function 100% done, index section and create section updated routing, updated db
 branch 25 - edited view-section table
 branch 26 - updated controller for teacher login, and added inputfield for teacherlogin
+branch 27 - updated login controller on github
+branch 28 - updated readme

@@ -16,20 +16,28 @@ exports.postAdminLogin = (req, res) => {
 
     const {admin_id, username, userpassword } = req.body;
 
+    console.log(req.body);
     // Use placeholders in the SQL query
     const sql = 'SELECT admin_id, username, userpassword FROM adminlogins WHERE admin_id = ? AND username = ? AND userpassword = ?';
 
-    connection.query(sql, [admin_id, username, userpassword], (err, results) => {
+    connection.query(sql, [admin_id, username], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
-                // Login successful
-                res.redirect('/admin/dashboard');
+                const storedPassword = results[0].userpassword;
+                // Compare the stored password with the provided password (you should use a secure password hashing library)
+                if (userpassword === storedPassword) {
+                    // Login successful
+                    res.redirect('/admin/dashboard');
+                } else {
+                    // Incorrect password
+                    res.send('Incorrect password');
+                }
             } else {
-                // Login failed
-                res.send('Login failed');
+                // No matching user found
+                res.send('User not found');
             }
         }
         connection.end();

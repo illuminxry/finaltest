@@ -1,35 +1,30 @@
-const mysql = require("mysql");
-
-const conn = {
-    host: 'localhost',
-    database: 'finalcapstone',
-    user: 'root',
-    password: ''
-};
-
-exports.getAdminLogin = (req, res) => {
-    res.render('admin-login');
-};
-
-exports.postAdminLogin = (req, res) => {
+exports.postTeacherLogin = (req, res) => {
     const connection = mysql.createConnection(conn);
 
-    const {admin_id, username, userpassword } = req.body;
+    const { teacherid, userlogin, userpassword } = req.body;
 
     // Use placeholders in the SQL query
-    const sql = 'SELECT admin_id, username, userpassword FROM adminlogins WHERE admin_id = ? AND username = ? AND userpassword = ?';
+    const sql = 'SELECT teacherid, userlogin, userpassword FROM teacherlogins WHERE teacherid = ? AND userlogin = ?';
 
-    connection.query(sql, [admin_id, username, userpassword], (err, results) => {
+    // Execute the SQL query with placeholders
+    connection.query(sql, [teacherid, userlogin], (err, results) => {
         if (err) {
             console.error('Cannot Log In:', err);
             res.status(500).send('Internal Server Error');
         } else {
             if (results.length > 0) {
-                // Login successful
-                res.redirect('/admin/dashboard');
+                const storedPassword = results[0].userpassword;
+                // Compare the stored password with the provided password (you should use a secure password hashing library)
+                if (userpassword === storedPassword) {
+                    // Login successful
+                    res.redirect('/teacher/dashboard');
+                } else {
+                    // Incorrect password
+                    res.send('Incorrect password');
+                }
             } else {
-                // Login failed
-                res.send('Login failed');
+                // No matching user found
+                res.send('User not found');
             }
         }
         connection.end();

@@ -35,5 +35,3 @@ exports.postAdminLogin = (req, res) => {
         connection.end();
     });
 };
-
- 

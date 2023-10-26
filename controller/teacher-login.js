@@ -18,9 +18,7 @@ exports.postTeacherLogin = (req, res) => {
 
     // Use placeholders in the SQL query
     const sql = 'SELECT teacherid, userlogin, userpassword FROM teacherlogins WHERE teacherid = ? AND userlogin = ?';
-    console.log(teacherid);
-    console.log(userlogin);
-    console.log(userpassword);
+    console.log(req.body);
     // Execute the SQL query with placeholders
     connection.query(sql, [teacherid, userlogin], (err, results) => {
         if (err) {

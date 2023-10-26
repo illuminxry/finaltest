@@ -18,7 +18,7 @@ exports.postAdminLogin = (req, res) => {
 
     console.log(req.body);
     // Use placeholders in the SQL query
-    const sql = 'SELECT admin_id, username, userpassword FROM adminlogins WHERE admin_id = ? AND username = ? AND userpassword = ?';
+    const sql = 'SELECT admin_id, username, userpassword FROM adminlogins WHERE admin_id = ? AND username = ?';
 
     connection.query(sql, [admin_id, username], (err, results) => {
         if (err) {

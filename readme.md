@@ -35,3 +35,4 @@ branch 27 - updated login controller on teacher login
 branch 28 - updated readme
 branch 30 - created teacher account creation for admin
 branch 31 - created form for admin to create departments
+branch 32 - created index page for admin-departments

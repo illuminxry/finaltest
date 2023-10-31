@@ -1,0 +1,83 @@
+<h1>admin create teacher accounts</h1>
+
+<form action="/admin/create/teacher-account/create" method="post">
+    <label for="">Teacher ID</label><br>
+    <input type="text" name="" id=""><br>
+    <label for="">First Name</label><br>
+    <input type="text" name="" id=""><br>
+    <label for="">Middle Name</label><br>
+    <input type="text" name="" id=""><br>
+    <label for="">Last Name</label><br>
+    <input type="text" name="" id=""><br>
+    <label for=""></label><br>
+    <input type="text" name="" id=""><br>
+    <label for="">Suffix</label><br>
+    <select name="suffix" id="suffix">
+        <option value="" default disabled selected>Choose an option</option>
+        <option value="Sr.">Senior</option>
+        <option value="Jr.">Junior</option>
+        <option value="III">III</option>
+        <option value="IV">IV</option>
+        <option value="V">V</option>
+        <option value="VI">VI</option>
+        <option value="null">none</option>
+    </select><br>
+    <label for="department">Department</label><br>
+    <select name="department" id="department">
+        <% for (let departmentObject of departments) { %>
+            <option value="<%= departmentObject.department %>">
+                <%= departmentObject.department %>
+            </option>
+            <% } %>
+    </select>
+
+
+    <label for="">User Login</label><br>
+    <input type="text" name="" id=""><br>
+    <label for=""></label>User Password<br>
+    <input type="text" name="" id=""><br>
+
+    <!-- <label for="teacherID">Teacher ID</label><br>
+<input type="text" name="teacherID" id="teacherID" oninput="generateUserLogin()"><br>
+
+<label for="userLogin">User Login</label><br>
+<input type="text" name="userLogin" id="userLogin" readonly><br>
+
+<label for="firstName">First Name</label><br>
+<input type="text" name="firstName" id="firstName" oninput="generateUserLogin()"><br>
+
+<label for="middleName">Middle Name</label><br>
+<input type text="text" name="middleName" id="middleName" oninput="generateUserLogin()"><br>
+
+<label for="lastName">Last Name</label><br>
+<input type="text" name="lastName" id="lastName" oninput="generateUserLogin()"><br>
+
+<script>
+    function generateUserLogin() {
+        // Get the values of the teacher ID, first name, middle name, and last name
+        const teacherID = document.getElementById("teacherID").value;
+        const firstName = document.getElementById("firstName").value;
+        const middleName = document.getElementById("middleName").value;
+        const lastName = document.getElementById("lastName").value;
+
+        // Extract the first four characters from the teacher ID
+        const teacherIDPart = teacherID.substr(0, 4);
+
+        // Create the user login by taking the first letter of the first name, middle name, and the full last name
+        const userLogin = (
+            (firstName.split(' ')[0].charAt(0).toLowerCase() || '') +
+            (firstName.split(' ')[1] ? firstName.split(' ')[1].charAt(0).toLowerCase() : '') +
+            middleName.charAt(0).toLowerCase() +
+            lastName.toLowerCase()
+        );
+
+        // Combine the teacher ID part and user login to create the final user login
+        const finalUserLogin = teacherIDPart + "-" + userLogin;
+
+        // Update the user login field
+        document.getElementById("userLogin").value = finalUserLogin;
+    }
+</script> -->
+
+
+</form>

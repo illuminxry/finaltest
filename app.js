@@ -21,6 +21,7 @@ var studentLoginRouter = require('./routes/student-login');
 var studentDashboardRouter = require('./routes/student-dashboard');
 var teacherLoginRouter = require('./routes/teacher-login');
 var teacherDashboardRouter = require('./routes/teacher-dashboard');
+var adminCreateTeacherAccountRouter = require('./routes/admin-create-teacher-account');
 var app = express();
 
 //port listener
@@ -51,6 +52,7 @@ app.use('/', adminEditSectionRouter);
 app.use('/', adminIndexSectionRouter);
 app.use('/', adminViewSectionRouter);
 app.use('/', adminDeleteSectionRouter);
+app.use('/', adminCreateTeacherAccountRouter);
 app.use('/', teacherLoginRouter);
 app.use('/', teacherDashboardRouter);
 

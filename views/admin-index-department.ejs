@@ -11,7 +11,11 @@
             <td><%= department.department %></td>
             <td><%= department.visibility %></td>
             <td><a href="/admin/edit-department/<%= department.id %>">Edit</a></td>
-            <td><button>Delete</button></td>
+            <td>
+                <form action="/admin/delete-department/<%= department.id %>" method="post">
+                    <button type="submit">Delete Department</button>
+                </form>
+            </td>
         </tr>
     <% }); %>
 </table>

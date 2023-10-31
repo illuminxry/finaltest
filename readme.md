@@ -37,3 +37,4 @@ branch 30 - created teacher account creation for admin
 branch 31 - created form for admin to create departments
 branch 32 - created index page for admin-departments
 branch 33 - created edit function in index-departments and modified its routing
+branch 34 - created delete function in index-departments

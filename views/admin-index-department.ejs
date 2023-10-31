@@ -10,7 +10,7 @@
         <tr>
             <td><%= department.department %></td>
             <td><%= department.visibility %></td>
-            <td><button>Edit <%= department.id %></button></td>
+            <td><a href="/admin/edit-department/<%= department.id %>">Edit</a></td>
             <td><button>Delete</button></td>
         </tr>
     <% }); %>
